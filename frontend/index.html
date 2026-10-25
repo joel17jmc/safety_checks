@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#101820">
+    <title>AgentGuard AI | Security Monitor</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <main class="dashboard">
+      <header class="topbar">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true">AG</span>
+          <div>
+            <p class="eyebrow">LOCAL SECURITY MONITOR</p>
+            <h1>AgentGuard <span>AI</span></h1>
+          </div>
+        </div>
+        <div class="header-actions">
+          <span class="status"><span class="status-dot"></span> API monitor</span>
+          <button id="refresh-button" class="refresh-button" type="button">Refresh</button>
+        </div>
+      </header>
+
+      <section class="intro" aria-labelledby="overview-title">
+        <div>
+          <p class="eyebrow">OVERVIEW</p>
+          <h2 id="overview-title">Action security</h2>
+          <p class="subheading">Review decisions made by the backend policy engine.</p>
+        </div>
+        <p id="last-updated" class="last-updated">Waiting for API…</p>
+      </section>
+
+      <section class="demo-action" aria-labelledby="demo-action-title">
+        <div class="demo-header">
+          <p class="eyebrow">SAFE DEMO</p>
+          <h2 id="demo-action-title">Try an action request</h2>
+          <p class="subheading">The backend allows only one approved file and blocks everything else. This makes the policy decision easy to understand.</p>
+        </div>
+
+        <div class="action-grid">
+          <article class="action-card action-card-allow">
+            <div class="card-label">Allowed</div>
+            <h3>Read approved file</h3>
+            <p>example.txt</p>
+            <button id="run-allowed-button" class="run-button run-allowed" type="button">Try allowed action</button>
+          </article>
+
+          <article class="action-card action-card-block">
+            <div class="card-label">Blocked</div>
+            <h3>Try forbidden file</h3>
+            <p>secret.txt</p>
+            <button id="run-blocked-button" class="run-button run-blocked" type="button">Try blocked action</button>
+          </article>
+        </div>
+
+        <p id="action-result" class="action-result" role="status" aria-live="polite">No action run yet.</p>
+      </section>
+
+      <section class="metrics" aria-label="Action totals">
+        <article class="metric-card">
+          <p>Total actions</p>
+          <strong id="total-count">—</strong>
+          <span>Recorded requests</span>
+        </article>
+        <article class="metric-card allowed-card">
+          <p>Allowed</p>
+          <strong id="allowed-count">—</strong>
+          <span>Permitted by policy</span>
+        </article>
+        <article class="metric-card blocked-card">
+          <p>Blocked</p>
+          <strong id="blocked-count">—</strong>
+          <span>Denied by policy</span>
+        </article>
+      </section>
+
+      <section class="events-panel" aria-labelledby="events-title">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">AUDIT TRAIL</p>
+            <h2 id="events-title">Recent security events</h2>
+          </div>
+          <span class="panel-note">Newest first · last 20</span>
+        </div>
+        <p id="error-message" class="error-message" role="status" hidden></p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Time</th>
+                <th scope="col">Action type</th>
+                <th scope="col">Decision</th>
+                <th scope="col">Reason</th>
+              </tr>
+            </thead>
+            <tbody id="events-list">
+              <tr><td class="empty-state" colspan="4">Loading events…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+      <footer>Policy decisions are enforced by the backend. This learning prototype is not production security software.</footer>
+    </main>
+  </body>
+</html>

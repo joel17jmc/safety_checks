@@ -1,0 +1,4 @@
+Hello from AgentGuard AI!
+
+This is harmless sample text in the approved demo file.
+The demo agent is permitted to read this file.
